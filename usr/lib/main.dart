@@ -11,125 +11,119 @@ class GlacierEconomyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ග්ලැසියර් වල ආර්ථික වටිනාකම',
-      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF00B4D8),
-          brightness: Brightness.light,
-          background: const Color(0xFFE0FBFC),
-        ),
+        primarySwatch: Colors.blue,
+        fontFamily: 'Iskoola Pota', // Common standard for Sinhala fonts, fallback works nicely in Flutter Web
         useMaterial3: true,
-        fontFamily: 'Roboto', // Fallback for Sinhala rendering
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const GlacierInfoScreen(),
+        '/': (context) => const GlacierArticleScreen(),
       },
     );
   }
 }
 
-class GlacierInfoScreen extends StatelessWidget {
-  const GlacierInfoScreen({super.key});
+class GlacierArticleScreen extends StatelessWidget {
+  const GlacierArticleScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'ග්ලැසියර් වල ආර්ථික වටිනාකම',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        centerTitle: true,
+        title: const Text('ග්ලැසියර් වල ආර්ථික වටිනාකම'),
+        backgroundColor: Colors.blue.shade800,
+        foregroundColor: Colors.white,
       ),
-      body: SafeArea(
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 800),
-            child: ListView(
-              padding: const EdgeInsets.all(24.0),
-              children: [
-                const SizedBox(height: 16),
-                _buildInfoCard(
-                  context,
-                  title: '1. මිරිදිය ජල සැපයුම සහ කෘෂිකර්මාන්තය',
-                  icon: Icons.water_drop,
-                  description:
-                      'ග්ලැසියර යනු ලෝකයේ විශාලතම මිරිදිය සංචිතයයි. වියළි කාලවලදී කෘෂිකර්මාන්තයට, පානයට සහ කර්මාන්ත සඳහා අවශ්‍ය ජලය ලබා දෙමින් ගංගා සහ ඇළ දොළ පෝෂණය කිරීමේ ප්‍රධාන මූලාශ්‍රයක් ලෙස ග්ලැසියර ක්‍රියා කරයි. විශේෂයෙන්ම ආසියාවේ සහ දකුණු ඇමෙරිකාවේ මිලියන ගණනක් ජනතාවගේ දෛනික කෘෂිකාර්මික කටයුතු සහ ආර්ථික පැවැත්ම රඳා පවතින්නේ මෙම ග්ලැසියර දියවීමෙන් ලැබෙන ජලය මතය.',
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 800),
+          child: ListView(
+            padding: const EdgeInsets.all(24.0),
+            children: const [
+              Text(
+                'ග්ලැසියර් (Glaciers) වල ආර්ථික වටිනාකම',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
                 ),
-                const SizedBox(height: 24),
-                _buildInfoCard(
-                  context,
-                  title: '2. ජල විදුලි උත්පාදනය',
-                  icon: Icons.electric_bolt,
-                  description:
-                      'ග්ලැසියර දියවීමෙන් ජනනය වන අඛණ්ඩ ජල ධාරිතාව ජල විදුලිය නිපදවීම සඳහා බහුලව යොදා ගැනේ. කඳුකර සහ ශීත කලාපීය රටවල කර්මාන්ත සහ ගෘහස්ථ අවශ්‍යතා සඳහා අඩු පිරිවැයකින් සහ පරිසර හිතකාමීව බලශක්තිය සැපයීමට මෙය බෙහෙවින් දායක වේ. මෙය එම රටවල ජාතික ආර්ථිකය ඉහළ නැංවීමට සහ බලශක්ති ආනයන වියදම් අවම කිරීමට විශාල ශක්තියකි.',
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 24),
+              Text(
+                'පෘථිවි පෘෂ්ඨයෙන් සෑහෙන ප්‍රමාණයක් ආවරණය කරන ග්ලැසියර් හෙවත් විශාල අයිස් ගංගා, හුදෙක් පාරිසරික වශයෙන් පමණක් නොව ආර්ථික වශයෙන් ද අතිශය වැදගත් ස්වභාවික සම්පතකි. ගෝලීය ආර්ථිකය මෙන්ම බොහෝ රටවල දේශීය ආර්ථිකයන් ද මෙම ග්ලැසියර් පද්ධති මත සෘජුව හා වක්‍රව රඳා පවතී. ග්ලැසියර් වල ආර්ථික වටිනාකම ප්‍රධාන වශයෙන් පහත සඳහන් කරුණු තුන ඔස්සේ පුළුල්ව සාකච්ඡා කළ හැකිය.',
+                style: TextStyle(fontSize: 18, height: 1.6),
+                textAlign: TextAlign.justify,
+              ),
+              SizedBox(height: 24),
+              _SectionHeading('1. කෘෂිකර්මාන්තය සහ ජල සම්පාදනය සඳහා අත්‍යවශ්‍ය මිරිදිය ප්‍රභවයක් වීම'),
+              SizedBox(height: 12),
+              Text(
+                'ලෝකයේ ඇති සමස්ත මිරිදිය සංචිතයෙන් 68% කටත් වඩා වැඩි ප්‍රමාණයක් ගබඩා වී ඇත්තේ ග්ලැසියර් සහ අයිස් තට්ටු තුළ ය. විශේෂයෙන්ම හිමාලය, ඇන්ඩීස් වැනි කඳුකර කලාපවල පිහිටි ග්ලැසියර්, එම කලාපවලින් ආරම්භ වන ගංගා සඳහා ප්‍රධාන ජල මූලාශ්‍රය වේ. මෙහි ආර්ථික වැදගත්කම වඩාත් ඉස්මතු වන්නේ ගිම්හාන කාලයේදී සහ වියළි කාලගුණික තත්ත්වයන් යටතේදීය. වර්ෂාපතනය අඩු කාලවලදී ග්ලැසියර් ක්‍රමයෙන් දියවීම නිසා ගංගාවල ජල මට්ටම නොකඩවා පවත්වා ගැනීමට හැකි වේ.\n\nමෙම අඛණ්ඩ ජල සැපයුම කෘෂිකර්මාන්තය සඳහා ජීව රුධිරය බඳුය. උදාහරණයක් ලෙස, ආසියාවේ ඉන්දු, ගංගා සහ බ්‍රහ්මපුත්‍ර වැනි ගංගා නිම්නවල වෙසෙන බිලියන ගණනක් වූ ජනතාවගේ කෘෂිකාර්මික කටයුතු රඳා පවතින්නේ හිමාලයානු ග්ලැසියර් දියවීමෙන් ලැබෙන ජලය මතය. නිසි පරිදි වගාවන් සඳහා ජලය ලැබීමෙන් කෘෂිකාර්මික නිෂ්පාදනය ඉහළ යන අතර, එය රටක ආහාර සුරක්ෂිතතාව තහවුරු කිරීමට මෙන්ම කෘෂි නිෂ්පාදන අපනයනයෙන් විශාල විදේශ විනිමයක් උපයා ගැනීමට ද උපකාරී වේ.',
+                style: TextStyle(fontSize: 18, height: 1.6),
+                textAlign: TextAlign.justify,
+              ),
+              SizedBox(height: 24),
+              _SectionHeading('2. අඩු පිරිවැය සහ පරිසර හිතකාමී ජල විදුලි බලය උත්පාදනය'),
+              SizedBox(height: 12),
+              Text(
+                'ග්ලැසියර් ආශ්‍රිතව සිදුවන තවත් සුවිශේෂී ආර්ථික වාසියක් වන්නේ ජල විදුලි බලය උත්පාදනයයි. කඳුකර ප්‍රදේශවලින් ආරම්භ වන ග්ලැසියර් ජල ධාරා පහළට ගලා එන්නේ විශාල වේගයකින් සහ පීඩනයකිනි. මෙම ශක්තිය යොදාගනිමින් ජල විදුලි බලාගාර ඉතා කාර්යක්ෂමව ක්‍රියාත්මක කළ හැකිය. නෝර්වේ, ස්විට්සර්ලන්තය, කැනඩාව, නවසීලන්තය සහ දකුණු ඇමෙරිකානු රටවල් බොහොමයක් තම ජාතික විදුලිබල අවශ්‍යතාවයෙන් සැලකිය යුතු ප්‍රතිශතයක් සපුරා ගන්නේ මෙවැනි ග්ලැසියර් ආශ්‍රිත ජල මූලාශ්‍ර හරහාය.\n\nජල විදුලිය යනු පුනර්ජනනීය බලශක්ති ප්‍රභවයකි. ඛනිජ තෙල් හෝ ගල් අඟුරු වැනි ආනයනික පොසිල ඉන්ධන මත රඳා නොපවතින බැවින්, මෙමගින් බලශක්තිය නිපදවීම සඳහා වැය වන පිරිවැය ඉතා අවම වේ. අඩු පිරිවැයකින් විදුලිය නිපදවීමට හැකි වීම, කර්මාන්තශාලාවල නිෂ්පාදන වියදම් අඩු කිරීමට හේතු වන අතර, එය භාණ්ඩවල මිල අඩුවීමට සහ කර්මාන්තවල තරඟකාරීත්වය ඉහළ නැංවීමට බලපායි.',
+                style: TextStyle(fontSize: 18, height: 1.6),
+                textAlign: TextAlign.justify,
+              ),
+              SizedBox(height: 24),
+              _SectionHeading('3. සංචාරක කර්මාන්තය, විනෝදාස්වාදය සහ ප්‍රාදේශීය සංවර්ධනය'),
+              SizedBox(height: 12),
+              Text(
+                'ග්ලැසියර් ආශ්‍රිත ප්‍රදේශ යනු ලොව පුරා සංචාරකයින්ගේ දැඩි ආකර්ෂණයට ලක්වූ ස්ථාන වේ. හිමෙන් වැසුණු කඳු මුදුන් සහ අලංකාර අයිස් නිම්න ස්වභාවික සෞන්දර්යයෙන් අනූන බැවින්, වාර්ෂිකව මිලියන ගණනක් සංචාරකයින් මෙම ප්‍රදේශ නැරඹීමට පැමිණෙති. මෙය ආර්ථිකයට දැවැන්ත ආදායමක් ගෙන දෙන මාර්ගයකි. ස්විට්සර්ලන්තයේ ඇල්ප්ස් කඳුකරය, ඇලස්කාව, අයිස්ලන්තය සහ පකිස්ථානයේ උතුරු ප්‍රදේශ මීට කදිම නිදසුන් වේ.\n\nමෙම ප්‍රදේශවල සංචාරක කර්මාන්තය හුදෙක් නැරඹීමට පමණක් සීමා වී නොමැත. හිම මත ලිස්සා යාම (Skiing), හිම කඳු නැගීම (Ice climbing), සහ කේබල් කාර් මගින් සිදුකරන ගමන් වැනි විනෝදාස්වාද ක්‍රියාකාරකම් සඳහා ද විශාල ඉල්ලුමක් පවතී. මෙම ක්‍රියාකාරකම් හරහා ප්‍රාදේශීය ජනතාවට රැකියා අවස්ථා දහස් ගණනක් නිර්මාණය වේ. හෝටල් සහ නවාතැන් පහසුකම්, ප්‍රවාහන සේවා, සංචාරක මඟපෙන්වන්නන් සහ දේශීය වෙළෙඳපොළවල් සංවර්ධනය වීම තුළින් ප්‍රාදේශීය ආර්ථිකය ශක්තිමත් වේ.',
+                style: TextStyle(fontSize: 18, height: 1.6),
+                textAlign: TextAlign.justify,
+              ),
+              SizedBox(height: 32),
+              Divider(thickness: 2),
+              SizedBox(height: 16),
+              Text(
+                'නිගමනය',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
                 ),
-                const SizedBox(height: 24),
-                _buildInfoCard(
-                  context,
-                  title: '3. සංචාරක කර්මාන්තය',
-                  icon: Icons.downhill_skiing,
-                  description:
-                      'ග්ලැසියර ආශ්‍රිත ප්‍රදේශ ස්වභාවික සෞන්දර්යයෙන් අනූන බැවින්, ඒවා ලොව පුරා සංචාරකයින් විශාල වශයෙන් ආකර්ෂණය කර ගනී. හිම මත ලිස්සා යාම (Skiing), කඳු නැගීම සහ දර්ශන නැරඹීම වැනි විනෝදාත්මක ක්‍රියාකාරකම් හරහා දේශීය ජනතාවට රැකියා අවස්ථා නිර්මාණය වේ. හෝටල්, ප්‍රවාහන සහ වෙනත් සේවා සැපයීම හරහා රටක සංචාරක ආර්ථිකයට මෙයින් ඉහළ ආදායමක් ගලා එයි.',
+              ),
+              SizedBox(height: 12),
+              Text(
+                'සාරාංශයක් ලෙස ගත් කල, ග්ලැසියර් යනු හුදෙක් අයිස් තට්ටුවක් නොව සුවිශාල ආර්ථික බලවේගයකි. කෘෂිකර්මාන්තයට ජීවය දෙන මිරිදිය සැපයීමෙන්ද, කර්මාන්ත පෝෂණය කරන ලාභදායී විදුලිය උත්පාදනයෙන්ද, රටකට විදේශ විනිමය ගෙන එන සංචාරක කර්මාන්තය නඟා සිටුවීමෙන්ද ග්ලැසියර් වලින් මිනිස් වර්ගයාට ලැබෙන ආර්ථික දායකත්වය අමිල වේ. එබැවින්, ගෝලීය උණුසුම හේතුවෙන් සිදුවන ග්ලැසියර් දියවී යාමේ තර්ජනයෙන් මෙම වටිනා සම්පත ආරක්ෂා කර ගැනීම සමස්ත ලෝකයේම ආර්ථික පැවැත්ම උදෙසා අත්‍යවශ්‍ය වේ.',
+                style: TextStyle(
+                  fontSize: 18,
+                  height: 1.6,
+                  fontStyle: FontStyle.italic,
+                  color: Colors.black87,
                 ),
-                const SizedBox(height: 40),
-              ],
-            ),
+                textAlign: TextAlign.justify,
+              ),
+              SizedBox(height: 48),
+            ],
           ),
         ),
       ),
     );
   }
+}
 
-  Widget _buildInfoCard(BuildContext context, {required String title, required IconData icon, required String description}) {
-    return Card(
-      elevation: 4,
-      shadowColor: Colors.blue.withOpacity(0.2),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Icon(
-                    icon,
-                    size: 32,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Text(
-                    title,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.onSurface,
-                        ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Text(
-              description,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    height: 1.6,
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  ),
-              textAlign: TextAlign.justify,
-            ),
-          ],
-        ),
+class _SectionHeading extends StatelessWidget {
+  final String text;
+
+  const _SectionHeading(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: Colors.blue.shade900,
       ),
     );
   }
